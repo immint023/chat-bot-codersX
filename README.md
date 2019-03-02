@@ -1,0 +1,5 @@
+# chat-bot-codersX
+## config dotenv
+-EMAIL=YOUR EMAIL
+-PASSWORD=YOUR PASSWORD
+-RECEIVER=FACEBOOK USERID
