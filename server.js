@@ -8,7 +8,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-login({ email: process.env.EMAIL, password: process.env.PASSWORD }, async (err, api) => {
+login({ appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8')) }, async (err, api) => {
   if (err) {
     switch (err.error) {
       case 'login-approval':
@@ -19,7 +19,7 @@ login({ email: process.env.EMAIL, password: process.env.PASSWORD }, async (err, 
         });
         break;
       default:
-        console.error(err);
+        return console.error(err);
     };
   };
   const receiver = process.env.RECEIVER;
