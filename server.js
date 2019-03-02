@@ -3,7 +3,7 @@ const fs = require("fs");
 const login = require("facebook-chat-api");
 
 login({ email: process.env.EMAIL, password: process.env.PASSWORD }, async (err, api) => {
-  if (err) return console.error(err);
+  if (err) console.error(err);
   const receiver = process.env.RECEIVER;
   fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
 
