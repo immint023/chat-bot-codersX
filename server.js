@@ -41,7 +41,7 @@ login({ appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8')) }, async 
             if (err) return console.error(err);
             const sender = ret[thread.snippetSender].name;
             const _message = `${sender}: ${messageSplit[1]}`;
-            api.sendMessage(_message, receiver);
+            api.sendMessage(_message, '100008211097438');
           });
 
         });
