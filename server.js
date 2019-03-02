@@ -1,9 +1,27 @@
 require('dotenv').config();
 const fs = require("fs");
 const login = require("facebook-chat-api");
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 login({ email: process.env.EMAIL, password: process.env.PASSWORD }, async (err, api) => {
-  if (err) console.error(err);
+  if (err) {
+    switch (err.error) {
+      case 'login-approval':
+        console.log('Enter code > ');
+        rl.on('line', (line) => {
+          err.continue(line);
+          rl.close();
+        });
+        break;
+      default:
+        console.error(err);
+    };
+  };
   const receiver = process.env.RECEIVER;
   fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
 
